@@ -22,6 +22,7 @@ public class RandomFragment extends Fragment {
 
     GridView gridView;
     GridViewAdapter gridAdapter;
+    GridViewAdapter tempSaveAdapter;
     Button btn_random;
     static ArrayList<Model> templeRandomList;
     ArrayList<Model> temp;
@@ -38,6 +39,11 @@ public class RandomFragment extends Fragment {
         btn_random = v.findViewById(R.id.btn_random_fragment);
 
         random9Temple();
+
+        // save state of random
+        if(tempSaveAdapter != null){
+            gridView.setAdapter(tempSaveAdapter);
+        }
 
         return v;
     }
@@ -60,6 +66,8 @@ public class RandomFragment extends Fragment {
 
     private void bindToAdapterAndView(ArrayList<Model> temp) {
         gridAdapter = new GridViewAdapter(this.getActivity(), R.layout.grid_view_item, temp);
+        tempSaveAdapter = gridAdapter;
+
         gridView.setAdapter(gridAdapter);
     }
 }
